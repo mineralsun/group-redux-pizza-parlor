@@ -21,6 +21,12 @@ function Admin() {
         });
     }
 
+    const convert = (oldTime) => {
+        const date = new Date(oldTime).toLocaleDateString('en-EN')
+        const time = new Date(oldTime).toLocaleTimeString('en-EN')
+        return `${date} @ ${time}`;
+    }
+
     return (
         <>
         <h1>ORDERS:</h1>
@@ -31,7 +37,7 @@ function Admin() {
                     <h3>Order {order.id}</h3>
                     <tc>Name: {order.customer_name}</tc>
                     <br />
-                    <tc>Time Placed: {order.time}</tc>
+                    <tc>Time Placed: {convert(order.time)}</tc>
                     <br />
                     <tc>Type: {order.type}</tc>
                     <br />
