@@ -73,7 +73,7 @@ function PizzaList() {
             pizza={pizza}
             onAddToCart={handleAddToCart}
             onRemoveFromCart={handleRemoveFromCart}
-            total={total}
+            price={pizza.price}
           />
         ))}
       </ul>
