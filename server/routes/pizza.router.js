@@ -4,6 +4,7 @@ const pool = require('../modules/pool');
 
 router.get('/', (req, res) => {
     console.log('GET /api/pizza');
+    console.log('Seth')
     pool.query('SELECT * from "pizza";').then((result) => {
         res.send(result.rows);
     }).catch((error) => {
