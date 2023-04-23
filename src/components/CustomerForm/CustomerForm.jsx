@@ -8,13 +8,13 @@ function CustomerForm ({}) {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const customer_name = useSelector(store => store.customer_name);
-    const street_address = useSelector(store => store.street_address);
+    const customerName = useSelector(store => store.customer_name);
+    const streetAddress = useSelector(store => store.street_address);
     const city = useSelector(store => store.city);
     const zip = useSelector(store => store.zip);
     const type = useSelector(store => store.type);
-    const total = useSelector(store => store.total);
-    const pizzas = useSelector(store => store.pizzas);
+    const Total = useSelector(store => store.total);
+    const Pizzas = useSelector(store => store.pizzas);
 
     // const [customer_name, setCustomerName] = useState('');
     // const [street_address, setStreetAddress] = useState('');
@@ -49,32 +49,32 @@ function CustomerForm ({}) {
         dispatch(action);
     }
 
-    const submitForm = (e) => {
-        e.preventDefault();
-        let order = {
-            customer_name: customer_name,
-            street_address: street_address,
-            city: city,
-            zip: zip,
-            type: type,
+    // const submitForm = (e) => {
+    //     e.preventDefault();
+    //     let order = {
+            // customer_name: customer_name,
+            // street_address: street_address,
+            // city: city,
+            // zip: zip,
+            // type: type,
             // total: total,
             //! STORE VALUES FROM REDUX PIZZALIST IN THIS NEXT OBJECT
             // pizzas: [{ quantity: 1}]
-    }
-        axios.post('/api/order', order).then((response) => (
-            console.log(response)
-            // TODO fetch call
-        ))
-        .catch((error) => {
-            console.log(`Error in POST ${error}`);
-            alert('Something went wrong');
-        })
-    }
+    // }
+    //     axios.post('/api/order', order).then((response) => (
+    //         console.log(response)
+    //         // TODO fetch call
+    //     ))
+    //     .catch((error) => {
+    //         console.log(`Error in POST ${error}`);
+    //         alert('Something went wrong');
+    //     })
+    // }
 
     const proceedToCheckout = () => {
-        if (customer_name.length < 0) {
+        if (customerName.length < 0) {
             alert('Please enter name');
-        } else if (street_address.length < 0) {
+        } else if (streetAddress.length < 0) {
             alert('Please enter address');
         } else if (city.length < 0) {
             alert('Please enter a city!');
@@ -91,12 +91,12 @@ function CustomerForm ({}) {
         <>
             <form onSubmit={proceedToCheckout}>
                 <input type="text"
-                       value={customer_name}
+                       value={customerName}
                        placeholder="Name"
                        onChange={handleCustomerName} />
                 <br />
                 <input type="text"
-                       value={street_address}
+                       value={streetAddress}
                        placeholder="Street Address"
                        onChange={handleStreetAddress} />
                 <br />
@@ -105,7 +105,7 @@ function CustomerForm ({}) {
                        placeholder="City"
                        onChange={handleCity} />
                 <br />
-                <input type="text"
+                <input type="number"
                        value={zip}
                        placeholder="ZIP Code"
                        onChange={handleZip} />

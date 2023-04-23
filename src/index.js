@@ -56,14 +56,14 @@ const total = (state = 0, action) => {
     }
 };
 
-const customer_name = (state = '', action) => {
+const customerName = (state = '', action) => {
     if (action.type === 'SET_CUSTOMER_NAME') {
         return (action.payload);
     }
     return state;
 }
 
-const street_address = (state = '', action) => {
+const streetAddress = (state = '', action) => {
     if (action.type === 'SET_STREET_ADDRESS') {
         return (action.payload);
     }
@@ -95,8 +95,8 @@ const type = (state = 'Pickup' || 'Delivery', action) => {
 const storeInstance = createStore(
     combineReducers({
         cart,
-        customer_name,
-        street_address,
+        customerName,
+        streetAddress,
         city,
         zip,
         type,
