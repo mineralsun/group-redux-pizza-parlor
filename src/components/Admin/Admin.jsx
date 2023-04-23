@@ -13,8 +13,8 @@ function Admin() {
     }, []);
 
     const fetchPizzaOrder = () => {
-        axios.get('/api/orders').then((response) => {
-            dispatch({ type: 'ADD_ORDER', payload: response.data});
+        axios.get('/api/order').then((response) => {
+            dispatch({ type: 'SET_ORDER', payload: response.data});
         }).catch((error) => {
             console.log(`Error in GET: ${error}`);
             alert('Something went wrong!')
@@ -23,7 +23,17 @@ function Admin() {
 
     return (
         <>
-        
+        {
+            cart.map(order => (
+                <div key={order.id}>
+                    <th>ORDER LIST:</th>
+                    <tr>Name: {order.customer_name}</tr>
+                    <tr>Time Placed: {order.time}</tr>
+                    <tr>Type: {order.type}</tr>
+                    <tr>Total Cost: {order.total}</tr>
+                </div>
+            ))
+        }
         </>
     )
 }

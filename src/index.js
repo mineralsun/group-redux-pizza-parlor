@@ -10,8 +10,8 @@ import logger from 'redux-logger';
 
 //Items in the cart
 const cart = (state = [], action) => {
-    if (action.type === 'ADD_ORDER') {
-        return [...state, action.payload]
+    if (action.type === 'SET_ORDER') {
+        return action.payload;
     }
     return state;
 };
