@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
 
 // POST a new order
 router.post('/', async (req, res) => {
+    console.log('Everett')
     const client = await pool.connect();
 
     try {
@@ -27,6 +28,8 @@ router.post('/', async (req, res) => {
             total,
             pizzas
         } = req.body;
+        console.log(typeof(total));
+        console.log(req.body);
         await client.query('BEGIN')
         const orderInsertResults = await client.query(`INSERT INTO "orders" ("customer_name", "street_address", "city", "zip", "type", "total")
         VALUES ($1, $2, $3, $4, $5, $6)
@@ -34,6 +37,7 @@ router.post('/', async (req, res) => {
         const orderId = orderInsertResults.rows[0].id;
 
         await Promise.all(pizzas.map(pizza => {
+            console.log(pizza)
             const insertLineItemText = `INSERT INTO "line_item" ("order_id", "pizza_id", "quantity") VALUES ($1, $2, $3)`;
             const insertLineItemValues = [orderId, pizza.id, pizza.quantity];
             return client.query(insertLineItemText, insertLineItemValues);

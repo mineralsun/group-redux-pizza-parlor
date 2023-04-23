@@ -8,9 +8,17 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
+//Items in the cart
+const cart = (state = [], action) => {
+    if (action.type === 'ADD_ORDER') {
+        return [...state, action.payload]
+    }
+    return state;
+};
+
 const storeInstance = createStore(
     combineReducers({
-
+        cart,
     }),
     applyMiddleware(logger)
 );

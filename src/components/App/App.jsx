@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import PizzaList from '../PizzaList/PizzaList.jsx';
+import CustomerForm from '../CustomerForm/CustomerForm.jsx';
 
 function App() {
 
@@ -29,13 +30,14 @@ function App() {
             </li>
           </ul>
           <Route exact path="/">
-            HOME PAGE
+            <img src='images/pizza_photo.png' />
+            <p>Pizza is great.</p>
           </Route>
           <Route exact path="/api/pizza">
             <PizzaList />
           </Route>
           <Route exact path="/api/order">
-            {/* <CustomerForm /> */}
+            <CustomerForm />
           </Route>
           <Route exact path="/checkout">
             {/* <Checkout /> */}
@@ -44,8 +46,6 @@ function App() {
             {/* <Admin /> */}
           </Route>
         </div>
-      <img src='images/pizza_photo.png' />
-      <p>Pizza is great.</p>
       </Router>
     </div>
 
