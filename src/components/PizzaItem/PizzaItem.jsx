@@ -1,8 +1,10 @@
 import React from 'react';
 
 function PizzaItem(props) {
-    
-const { pizza, onAddToCart, onRemoveFromCart, total } = props 
+    // making the props individual variables from Pizzalist 
+  const { pizza, onAddToCart, onRemoveFromCart, total } = props;
+
+// Render the pizza item with it's name, description, price, and buttons that add/remove from the cart
   return (
     <div>
       <h3>{pizza.name}</h3>
@@ -14,5 +16,5 @@ const { pizza, onAddToCart, onRemoveFromCart, total } = props
   );
 }
 
-
 export default PizzaItem;
+
