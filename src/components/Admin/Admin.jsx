@@ -23,14 +23,20 @@ function Admin() {
 
     return (
         <>
+        <h1>ORDERS:</h1>
         {
             cart.map(order => (
                 <div key={order.id}>
-                    <th>ORDER LIST:</th>
-                    <tr>Name: {order.customer_name}</tr>
-                    <tr>Time Placed: {order.time}</tr>
-                    <tr>Type: {order.type}</tr>
-                    <tr>Total Cost: {order.total}</tr>
+                    <hr />
+                    <h3>Order {order.id}</h3>
+                    <tc>Name: {order.customer_name}</tc>
+                    <br />
+                    <tc>Time Placed: {order.time}</tc>
+                    <br />
+                    <tc>Type: {order.type}</tc>
+                    <br />
+                    <tc>Total Cost: {order.total}</tc>
+                    <hr />
                 </div>
             ))
         }
