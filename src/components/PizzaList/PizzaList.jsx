@@ -11,7 +11,7 @@ function PizzaList() {
   const pizzas = useSelector(store => store.pizzas);
   const cart = useSelector(store => store.cart);
   const total = useSelector(store => {
-    return store.cart.reduce((acc, pizza) => acc + pizza.cost * pizza.quantity, 0);
+    return store.cart.reduce((acc, pizza) => acc + pizza.price * pizza.quantity, 0);
   });
   const history = useHistory();
 
@@ -31,7 +31,7 @@ function PizzaList() {
   const handleAddToCart = (pizza) => {
     const index = cart.findIndex(item => item.id === pizza.id);
     if (index === -1) {
-      dispatch({ type: 'ADD_TO_CART', payload: { ...pizza, quantity: 1 } });
+      dispatch({ type: 'ADD_TO_CART', payload: { ...pizza, quantity: 1, total, } });
     } else {
       const newCart = [...cart];
       newCart[index].quantity++;
@@ -77,7 +77,7 @@ function PizzaList() {
           />
         ))}
       </ul>
-      <p>Cart total: ${total.toFixed(2)}</p>
+      <p>Cart total: ${total}</p>
       <button onClick={nextPage}>Next</button>
     </div>
   );

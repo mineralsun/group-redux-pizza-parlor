@@ -45,7 +45,7 @@ const cart = (state = [], action) => {
 const total = (state = 0, action) => {
     switch (action.type) {
         case 'ADD_TO_CART':
-            return state + action.payload.cost;
+            return state + action.payload.price;
         case 'UPDATE_CART':
         case 'REMOVE_FROM_CART':
             return action.payload.reduce((acc, item) => acc + item.cost * item.quantity, 0);
