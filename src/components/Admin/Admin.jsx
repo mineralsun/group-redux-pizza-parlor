@@ -7,6 +7,7 @@ function Admin() {
     const dispatch = useDispatch();
     const history = useHistory();
     const cart = useSelector(store => store.cart);
+    const order = useSelector(store => store.order);
 
     useEffect(() => {
         fetchPizzaOrder();
@@ -14,7 +15,7 @@ function Admin() {
 
     const fetchPizzaOrder = () => {
         axios.get('/api/order').then((response) => {
-            dispatch({ type: 'ADD_TO_CART', payload: response.data});
+            dispatch({ type: 'SET_ORDER', payload: response.data});
         }).catch((error) => {
             console.log(`Error in GET: ${error}`);
             alert('Something went wrong!')
@@ -31,7 +32,7 @@ function Admin() {
         <>
         <h1>ORDERS:</h1>
         {
-            cart.map(order => (
+            order.map(order => (
                 <div key={order.id}>
                     <hr />
                     <h3>Order {order.id}</h3>

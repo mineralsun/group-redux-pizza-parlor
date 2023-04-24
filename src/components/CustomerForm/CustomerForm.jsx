@@ -70,7 +70,8 @@ function CustomerForm ({}) {
     //     })
     // }
 
-    const proceedToCheckout = () => {
+    const proceedToCheckout = (event) => {
+        event.preventDefault();
         if (customer_name.length < 0) {
             alert('Please enter name');
         } else if (street_address.length < 0) {

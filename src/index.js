@@ -91,6 +91,13 @@ const type = (state = 'Pickup' || 'Delivery', action) => {
     return state;
 }
 
+const order = (state = [], action) => {
+    if (action.type === 'SET_ORDER') {
+        return action.payload;
+    }
+    return state;
+}
+
 
 const storeInstance = createStore(
     combineReducers({
@@ -102,6 +109,7 @@ const storeInstance = createStore(
         type,
         total,
         pizzas,
+        order,
     }),
     applyMiddleware(logger)
 );
