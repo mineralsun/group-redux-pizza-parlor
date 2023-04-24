@@ -8,13 +8,13 @@ function CustomerForm ({}) {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const customerName = useSelector(store => store.customer_name);
-    const streetAddress = useSelector(store => store.street_address);
+    const customer_name = useSelector(store => store.customer_name);
+    const street_address = useSelector(store => store.street_address);
     const city = useSelector(store => store.city);
     const zip = useSelector(store => store.zip);
     const type = useSelector(store => store.type);
-    const Total = useSelector(store => store.total);
-    const Pizzas = useSelector(store => store.pizzas);
+    const total = useSelector(store => store.total);
+    const pizzas = useSelector(store => store.pizzas);
 
     // const [customer_name, setCustomerName] = useState('');
     // const [street_address, setStreetAddress] = useState('');
@@ -25,27 +25,27 @@ function CustomerForm ({}) {
     // const [pizzas, setCustomerPizza] = useState({id: 0, quantity: 0});
 
     const handleCustomerName = (e) => {
-        const action = { type: 'SET_CUSTOMER_NAME', action: e.target.value};
+        const action = { type: 'SET_CUSTOMER_NAME', payload: e.target.value};
         dispatch(action);
     }
 
     const handleStreetAddress = (e) => {
-        const action = { type: 'SET_STREET_ADDRESS', action: e.target.value};
+        const action = { type: 'SET_STREET_ADDRESS', payload: e.target.value};
         dispatch(action);
     }
 
     const handleCity = (e) => {
-        const action = { type: 'SET_CITY', action: e.target.value};
+        const action = { type: 'SET_CITY', payload: e.target.value};
         dispatch(action);
     }
 
     const handleZip = (e) => {
-        const action = { type: 'SET_ZIP', action: e.target.value};
+        const action = { type: 'SET_ZIP', payload: e.target.value};
         dispatch(action);
     }
     
     const handleType = (e) => {
-        const action = { type: 'SET_TYPE', action: e.target.value};
+        const action = { type: 'SET_TYPE', payload: e.target.value};
         dispatch(action);
     }
 
@@ -63,7 +63,6 @@ function CustomerForm ({}) {
     // }
     //     axios.post('/api/order', order).then((response) => (
     //         console.log(response)
-    //         // TODO fetch call
     //     ))
     //     .catch((error) => {
     //         console.log(`Error in POST ${error}`);
@@ -72,15 +71,15 @@ function CustomerForm ({}) {
     // }
 
     const proceedToCheckout = () => {
-        if (customerName.length < 0) {
+        if (customer_name.length < 0) {
             alert('Please enter name');
-        } else if (streetAddress.length < 0) {
+        } else if (street_address.length < 0) {
             alert('Please enter address');
         } else if (city.length < 0) {
             alert('Please enter a city!');
         } else if (zip.length < 0 ) {
             alert('Please enter a ZIP code!');
-        } else if ('Pickup' || 'Delievery' === type) {
+        } else if (type !== 'Pickup' && type !== 'Delivery') {
             alert('Please select Pickup or Delivery');
         } else {
             history.push('/checkout');
@@ -91,12 +90,12 @@ function CustomerForm ({}) {
         <>
             <form onSubmit={proceedToCheckout}>
                 <input type="text"
-                       value={customerName}
+                       value={customer_name}
                        placeholder="Name"
                        onChange={handleCustomerName} />
                 <br />
                 <input type="text"
-                       value={streetAddress}
+                       value={street_address}
                        placeholder="Street Address"
                        onChange={handleStreetAddress} />
                 <br />
@@ -105,7 +104,7 @@ function CustomerForm ({}) {
                        placeholder="City"
                        onChange={handleCity} />
                 <br />
-                <input type="number"
+                <input type="text"
                        value={zip}
                        placeholder="ZIP Code"
                        onChange={handleZip} />
